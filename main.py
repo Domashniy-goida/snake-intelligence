@@ -1,10 +1,30 @@
-# Начало проекта Snake Intelligence
-name = input("Введите имя змеи: ")
-age = int(input("Введите возраст змеи (полных лет): "))
-weight = float(input("Введите вес змеи в граммах: "))
-is_heavy_enough = weight > 400
+# Данные
+name = "Василиса"
+weight = float(input("Текущий вес (г): "))
+temp = float(input("Температура в террариуме (°C): "))
+is_active = input("Змея активна? (да/нет): ").lower() == "да"
 
-print(f"Змея {name}: возраст {age} лет, вес {weight}г. Данные приняты.")
-print(f"Змея достаточно весит? {is_heavy_enough}")
-print(f"Тип переменной: {type(is_heavy_enough)}")
-print(type(1233))
+print(f"\n--- Отчет системы для {name} ---")
+
+# 1. Проверка веса (Билет 5)
+if weight > 2000:
+    status = "Избыточный вес"
+elif 500 <= weight <= 2000:
+    status = "Норма"
+else:
+    status = "Недовес / Молодая особь"
+
+# 2. Сложное условие (Вложенность)
+if temp < 22 or temp > 32:
+    alert = "КРИТИЧЕСКИЙ УРОВЕНЬ ТЕМПЕРАТУРЫ!"
+    if is_active:
+        action = "Срочно проверить термостат, змея в стрессе."
+    else:
+        action = "Змея в анабиозе, риск гибели."
+else:
+    alert = "Температура в норме"
+    action = "Вмешательство не требуется."
+
+print(f"Статус веса: {status}")
+print(f"Климат: {alert}")
+print(f"Рекомендация: {action}")
