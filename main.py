@@ -28,3 +28,18 @@ else:
 print(f"Статус веса: {status}")
 print(f"Климат: {alert}")
 print(f"Рекомендация: {action}")
+
+# Расчет корма 
+food_weight_min = weight * 0.08
+food_weight_max = weight * 0.10
+
+print(f"\n--- Рекомендации по кормлению ---")
+print(
+    f"Оптимальный вес корма: {food_weight_min:.1f}г - {food_weight_max:.1f}г")
+
+if weight < 100:
+    print("Тип корма: Живые или размороженные 'голыши'.")
+elif 100 <= weight < 500:
+    print("Тип корма: Опушата или мелкие мыши.")
+else:
+    print("Тип корма: Взрослые мыши или крысы среднего размера.")
