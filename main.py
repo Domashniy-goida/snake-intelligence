@@ -74,7 +74,8 @@ print(weight_list)
 
 print()
 
-# словарные значения
+# словарные значения (билет 1)
+
 snake_inventory = {
     "caninus_samka": {
         "name": "Василиса",
@@ -164,3 +165,52 @@ for zmeya, data in updates.items():
         for characteristic, value in data.items():
             snake_inventory[zmeya][characteristic] = value
             print(f"Обновлено: {zmeya} -> {characteristic} теперь {value}")
+
+
+# множества (билет 1)
+
+# Создаем список видов змей (тут есть дубликаты)
+species_list = ["caninus", "boa", "caninus", "python", "boa"]
+
+# Превращаем в множество - дубликаты исчезают сами!
+unique_species = set(species_list)
+print(unique_species)  # Выведет: {'caninus', 'boa', 'python'}
+
+print()
+
+# Змеи, которые выставлены на продажу в США/Германию
+on_sale = {"caninus_samka", "caninus_samets", "udav_samka"}
+
+# Змеи, которые сейчас на лечении (их нельзя продавать)
+medical_treatment = {"caninus_samka", "python_new"}
+
+# 1. Кого мы МОЖЕМ продать прямо сейчас? (Разность)
+ready_to_go = on_sale - medical_treatment
+print(f"Готовы к продаже: {ready_to_go}")
+
+# 2. Какие змеи одновременно и в продаже, и на лечении? (Пересечение)
+# Это потенциальная проблема в базе!
+problem_snakes = on_sale & medical_treatment
+print(f"Внимание! Ошибочный статус у: {problem_snakes}")
+
+high_price_snakes = {"caninus_samets", "udav_samka", "python_new"}
+ready_for_breeding = {"caninus_samka", "udav_samka", 'setka_samka'}
+high_price_and_breeding = high_price_snakes & ready_for_breeding
+print(f"Змеи с высокой ценой и готовые к разведению: {high_price_and_breeding}")
+
+# множества через словари 
+
+# Автоматически создаем множество ID тех, кто дороже 500 000, используя данные из словаря
+high_price_snakes = {
+    key for key, data in snake_inventory.items() if data.get("price", 0) > 500000}
+
+# Автоматически создаем множество самок
+ready_for_breeding = {key for key in snake_inventory if key.endswith("_samka")}
+
+# И теперь магия пересечения работает на АВТОМАТИЧЕСКИХ данных
+high_price_and_breeding = high_price_snakes & ready_for_breeding
+print(f"Змеи с высокой ценой и готовые к разведению: {high_price_and_breeding}")
+
+# Автоматически создаем множество змей, которых нужно срочно кормить по характеристикам из словаря
+urgent_feeding = {key for key, data in snake_inventory.items() if data.get("days_since_last_meal", 0) > 14}
+print(f"Змеи, которых нужно срочно кормить: {urgent_feeding}")
